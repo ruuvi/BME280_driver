@@ -1004,12 +1004,11 @@ static int8_t reload_device_settings(const struct bme280_settings *settings, con
  */
 static double compensate_temperature(const struct bme280_uncomp_data *uncomp_data, struct bme280_calib_data *calib_data)
 {
-<<<<<<< HEAD
     double var1;
     double var2;
     double temperature;
-    double temperature_min = -40;
-    double temperature_max = 85;
+    //double temperature_min = -40;
+    //double temperature_max = 85;
 
     var1 = ((double)uncomp_data->temperature) / 16384.0 - ((double)calib_data->dig_T1) / 1024.0;
     var1 = var1 * ((double)calib_data->dig_T2);
@@ -1042,8 +1041,8 @@ static double compensate_pressure(const struct bme280_uncomp_data *uncomp_data,
     double var2;
     double var3;
     double pressure;
-    double pressure_min = 30000.0;
-    double pressure_max = 110000.0;
+    //double pressure_min = 30000.0;
+    //double pressure_max = 110000.0;
 
     var1 = ((double)calib_data->t_fine / 2.0) - 64000.0;
     var2 = var1 * var1 * ((double)calib_data->dig_P6) / 32768.0;
@@ -1088,8 +1087,8 @@ static double compensate_humidity(const struct bme280_uncomp_data *uncomp_data,
                                   const struct bme280_calib_data *calib_data)
 {
     double humidity;
-    double humidity_min = 0.0;
-    double humidity_max = 100.0;
+    //double humidity_min = 0.0;
+    //double humidity_max = 100.0;
     double var1;
     double var2;
     double var3;
