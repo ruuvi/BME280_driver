@@ -1041,7 +1041,7 @@ static double compensate_pressure(const struct bme280_uncomp_data *uncomp_data,
     double var2;
     double var3;
     double pressure;
-    //double pressure_min = 30000.0;
+    double pressure_min = 30000.0;
     //double pressure_max = 110000.0;
 
     var1 = ((double)calib_data->t_fine / 2.0) - 64000.0;
