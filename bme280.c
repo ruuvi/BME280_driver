@@ -1004,6 +1004,7 @@ static int8_t reload_device_settings(const struct bme280_settings *settings, con
  */
 static double compensate_temperature(const struct bme280_uncomp_data *uncomp_data, struct bme280_calib_data *calib_data)
 {
+<<<<<<< HEAD
     double var1;
     double var2;
     double temperature;
@@ -1016,6 +1017,7 @@ static double compensate_temperature(const struct bme280_uncomp_data *uncomp_dat
     var2 = (var2 * var2) * ((double)calib_data->dig_T3);
     calib_data->t_fine = (int32_t)(var1 + var2);
     temperature = (var1 + var2) / 5120.0;
+    /* Remove clipping
     if (temperature < temperature_min)
     {
         temperature = temperature_min;
@@ -1024,6 +1026,7 @@ static double compensate_temperature(const struct bme280_uncomp_data *uncomp_dat
     {
         temperature = temperature_max;
     }
+    */
 
     return temperature;
 }
@@ -1058,6 +1061,7 @@ static double compensate_pressure(const struct bme280_uncomp_data *uncomp_data,
         var1 = ((double)calib_data->dig_P9) * pressure * pressure / 2147483648.0;
         var2 = pressure * ((double)calib_data->dig_P8) / 32768.0;
         pressure = pressure + (var1 + var2 + ((double)calib_data->dig_P7)) / 16.0;
+        /* Remove clipping
         if (pressure < pressure_min)
         {
             pressure = pressure_min;
@@ -1066,6 +1070,7 @@ static double compensate_pressure(const struct bme280_uncomp_data *uncomp_data,
         {
             pressure = pressure_max;
         }
+        */
     }
     else /* Invalid case */
     {
@@ -1100,6 +1105,7 @@ static double compensate_humidity(const struct bme280_uncomp_data *uncomp_data,
     var6 = 1.0 + (((double)calib_data->dig_H6) / 67108864.0) * var1 * var5;
     var6 = var3 * var4 * (var5 * var6);
     humidity = var6 * (1.0 - ((double)calib_data->dig_H1) * var6 / 524288.0);
+    /* Remove clipping
     if (humidity > humidity_max)
     {
         humidity = humidity_max;
@@ -1108,6 +1114,7 @@ static double compensate_humidity(const struct bme280_uncomp_data *uncomp_data,
     {
         humidity = humidity_min;
     }
+    */
 
     return humidity;
 }
